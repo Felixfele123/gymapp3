@@ -5,7 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Timer from './Timer'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const BottomBar = ({setWorkouts, workouts, counterActive, setCounterActive}) => {
+const BottomBar = ({setWorkouts, workouts}) => {
   const classes = useStyles();
   
   const handleClick = () => {
@@ -64,7 +63,6 @@ const BottomBar = ({setWorkouts, workouts, counterActive, setCounterActive}) => 
             </Typography>
           </Button>
         </Toolbar>
-        <Timer counterActive={counterActive} setCounterActive={setCounterActive}/>
       </AppBar> 
   );
 }
