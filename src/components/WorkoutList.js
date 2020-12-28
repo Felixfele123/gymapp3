@@ -9,13 +9,13 @@ const WorkoutList = ({workouts, setWorkouts}) => {
     return(
       <div>
       {workouts.map(workout => {
-        return <div>
+        return <div key={workout._id}>
           {workout.newWeek === true &&
             <Typography variant="h5" style={{color: "#3f51b5", margin: "10px", marginTop: "30px"}}>
-              Vecka {Math.ceil(workout.workoutID/2)}
+              Vecka {Math.ceil((workouts.findIndex(w => w._id === workout._id) + 1)/2)}
             </Typography>
           }
-        <Workout setWorkouts={setWorkouts} workouts={workouts} key={workout.workoutID} workout={workout} />
+        <Workout setWorkouts={setWorkouts} workouts={workouts} workout={workout} />
         </div>
       })}        
       </div>

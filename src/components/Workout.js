@@ -41,7 +41,7 @@ const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
   const excirceses = workout.excirceses
   const handleChange = (workout) => {
     const newArr = workouts.map(w => {
-      if(w.workoutID === workout.workoutID){
+      if(w._id === workout._id){
        return {
         ...w,
         expanded: !w.expanded
@@ -56,7 +56,7 @@ const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
 
     return(
 
-      <Accordion key={workout.workoutID} expanded={workout.expanded} >
+      <Accordion key={workout._id} expanded={workout.expanded} >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -67,11 +67,11 @@ const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
             <Typography className={classes.heading}>{workout.name}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-        <Grid item xs={12} sm container>
+        <Grid item sm container>
             <Grid item xs>
               {excirceses.map(ex => {
-                return <Excircese workout={workout} workouts={workouts} setWorkouts={setWorkouts} 
-                key={ex.excerciseID} excirceses={excirceses} exercise={ex}/>
+                return <Excircese key={ex.excerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} 
+                excirceses={excirceses} exercise={ex}/>
               })}
             </Grid>
           </Grid>

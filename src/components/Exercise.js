@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Set from './Set'
+import NewSet from './NewSet'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,17 +43,22 @@ const Exercise = ({exercise, workout, setWorkouts, workouts}) => {
     const classes = useStyles();
     return(
             <Grid className={classes.exercise} item xs container spacing={2}>
-                <Grid xs={4} className={classes.exerciseName}>
+                <Grid xs={4} item className={classes.exerciseName}>
                     <Typography variant="body2" color="textSecondary">
                         {exercise.name}
                     </Typography>
                 </Grid>
-                <Grid className={classes.setWrapper} container xs={12}>
+                <Grid className={classes.setWrapper} container>
                     {sets.map(set => (
-                        <Grid item xs={12}>
-                            <Set key={set.setID} set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
+                        <Grid key={set.setID} item xs={12}>
+                            <Set set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
                         </Grid>
                     ))}
+                    {workout.active && (
+                        <Grid item xs={12}>
+                            <NewSet key={exercise.exerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
+                        </Grid>
+                    )}
                 </Grid>
             </Grid>
     );

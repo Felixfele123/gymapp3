@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+svg{
+  display: block!important;
+  margin: auto!important;
+  height: 50vh!important
+}
 input {
   color:white !important;
 }

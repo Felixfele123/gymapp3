@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Set = ({set, workouts, workout, exercise, setWorkouts}) => {
     const classes = useStyles();
-    const workoutIndex = workouts.findIndex(w => w.workoutID === workout.workoutID )
+    const workoutIndex = workouts.findIndex(w => w._id === workout._id )
     const exerciseIndex = workouts[workoutIndex].excirceses.findIndex(ex => ex.excerciseID === exercise.excerciseID)
     const setIndex = workouts[workoutIndex].excirceses[exerciseIndex].sets.findIndex(s => s.setID === set.setID)
     const status = workouts[workoutIndex].excirceses[exerciseIndex].sets[setIndex].status
@@ -65,7 +65,7 @@ const Set = ({set, workouts, workout, exercise, setWorkouts}) => {
         square={false}
         className={`${classes.paper} ${set.status === 'fail' ? classes.fail : set.status === 'success' ? classes.success : classes.open}`} 
         >
-        <Grid xs container direction="row">
+        <Grid container direction="row">
           <Grid item xs={6} >
             <Typography className={classes.description} gutterBottom variant="subtitle2">
               {set.resistence}

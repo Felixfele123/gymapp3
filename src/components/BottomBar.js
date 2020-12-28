@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
   buttom: {
       width: "100%",
       textAlign: 'center',
+      height: "56px",
       margin: 0,
       padding: 0,
-      height: "auto"
   },
   appBar: {
     height: "auto",
@@ -31,36 +31,27 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   toolbar: {
-    height: "100px",
+    height: "40px",
     textAlign: 'center', 
     margin: 0,
     padding: 0,
   }
 }));
 
-const BottomBar = ({setWorkouts, workouts}) => {
+const BottomBar = ({activeWorkout, setActiveWorkout}) => {
   const classes = useStyles();
-  
+  const history = useHistory();
   const handleClick = () => {
-    const newArr = workouts.map(w => {
-      if(w.workoutID === 2){
-       return {
-        ...w,
-        expanded: !w.expanded,
-        inProgress: true
-       }
-      }
-      return w
-    }) 
-    setWorkouts(newArr);
+    setActiveWorkout(true);
+    history.push("/newWorkout");
   };
   return (
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Button onClick={handleClick} className={classes.buttom} color="inherit">
-          <Typography variant="h5">
+          <Typography variant="subtitle1">
               Start Workout
-            </Typography>
+          </Typography>
           </Button>
         </Toolbar>
       </AppBar> 
