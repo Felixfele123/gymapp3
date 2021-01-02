@@ -11,8 +11,6 @@ const useStyles = makeStyles((theme) => ({
 
     },
     exercise: {
-      paddingX: theme.spacing(1),
-      margin: 'auto',
       marginTop: "5px",
       paddingTop: "10px"
     },
@@ -42,20 +40,23 @@ const Exercise = ({exercise, workout, setWorkouts, workouts}) => {
     const sets = exercise.sets;
     const classes = useStyles();
     return(
-            <Grid className={classes.exercise} item xs container spacing={2}>
+            <Grid className={classes.exercise} container>
                 <Grid xs={4} item className={classes.exerciseName}>
                     <Typography variant="body2" color="textSecondary">
                         {exercise.name}
                     </Typography>
                 </Grid>
-                <Grid className={classes.setWrapper} container>
+                <Grid className={classes.setWrapper} container
+                alignItems="center"
+                justify="center"
+                >
                     {sets.map(set => (
-                        <Grid key={set.setID} item xs={12}>
+                        <Grid key={set.setID} item xs={11}>
                             <Set set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
                         </Grid>
                     ))}
                     {workout.active && (
-                        <Grid item xs={12}>
+                        <Grid item xs={11}>
                             <NewSet key={exercise.exerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
                         </Grid>
                     )}

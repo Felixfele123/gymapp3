@@ -21,9 +21,9 @@ const TopBar = () => {
         return hours+':'+minutes+':'+seconds
   }
   return (
-    <div>
+    <span>
         {secToTimer(counter)}      
-    </div>
+    </span>
   );
 }
 

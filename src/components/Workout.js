@@ -41,7 +41,7 @@ const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
   const excirceses = workout.excirceses
   const handleChange = (workout) => {
     const newArr = workouts.map(w => {
-      if(w._id === workout._id){
+      if(w.workoutID === workout.workoutID){
        return {
         ...w,
         expanded: !w.expanded
@@ -61,12 +61,12 @@ const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
-          style={{margin: "2px"}}
+          style={{marginTop: "2px"}}
           onClick={() => handleChange(workout)}
         >
             <Typography className={classes.heading}>{workout.name}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails style={{padding: "0px"}}>
         <Grid item sm container>
             <Grid item xs>
               {excirceses.map(ex => {

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Timer from './Timer.js'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,16 +23,11 @@ const useStyles = makeStyles((theme) => ({
 const TopBar = ({activeWorkout}) => {
   const classes = useStyles();
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
     <Toolbar>
         <Typography variant="subtitle1" className={classes.title}>
         Mitt gym
         </Typography>
-        {activeWorkout && (
-            <Typography variant="subtitle1" className={classes.timer}>
-            <Timer />
-            </Typography>
-                    )}
     </Toolbar>
     </AppBar>
   );

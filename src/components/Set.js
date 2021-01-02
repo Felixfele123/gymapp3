@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
       paddingY: theme.spacing(2),
       margin: 'auto',
       marginTop: "20px",
-      maxWidth: 500,
-
     },
     open: {
       backgroundColor: "#F5F5F5"

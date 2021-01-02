@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     top: 'auto',
     bottom: 0,
     margin: 0,
-    padding: 0,
+    paddingBottom: "30px",
   },
   toolbar: {
     height: "40px",
@@ -38,19 +38,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const BottomBar = ({activeWorkout, setActiveWorkout}) => {
+const BottomBar = ({putWorkouts, newWorkoutList, setActiveWorkout, workouts, setWorkouts, newWorkout}) => {
   const classes = useStyles();
   const history = useHistory();
+  const [status, setStatus] = useState("start workout");
   const handleClick = () => {
-    setActiveWorkout(true);
-    history.push("/newWorkout");
+    if (history.location.pathname === '/newWorkout'){
+      history.push("/ActiveWorkout");
+      setStatus("end workout") 
+    }else if (history.location.pathname === '/ActiveWorkout'){
+      newWorkout.active = false
+      newWorkout = {...newWorkout, 
+        finishedDate: new Date().toJSON().slice(0,10).replace(/-/g,'')
+      }
+      console.log(newWorkout)
+      workouts.push(newWorkout)
+      history.push("/");  
+      setStatus("start workout") 
+      putWorkouts()  
+    }else{
+      history.push("/newWorkout");  
+      setStatus("next")   
+    }
   };
   return (
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Button onClick={handleClick} className={classes.buttom} color="inherit">
-          <Typography variant="subtitle1">
-              Start Workout
+          <Typography variant="subtitle1" style={{marginTop: "10px"}}>
+            {status}
           </Typography>
           </Button>
         </Toolbar>

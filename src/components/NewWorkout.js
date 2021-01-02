@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
-import axios from 'axios'
-import { useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles((theme) => ({
     success: {
@@ -20,59 +20,70 @@ const useStyles = makeStyles((theme) => ({
       paddingY: theme.spacing(2),
       margin: 'auto',
       marginTop: "20px",
-      maxWidth: 500,
     },
     open: {
       backgroundColor: "#F5F5F5"
     },
     description: {
-      margin: "10px 0 10px 0",
+      margin: "20px 0 20px 0",
+    },
+    headline: {
+        marginY: "10px"
+    },
+    button: {
+        textAlign: "center",
+        marginTop: "30px"
+    },
+    Lowerbody: {
+        borderColor: "#3f51b5"
     },
   }));
 
-const Workout = ({workouts, setWorkouts}) => {
-  useEffect(() => {
-    fetchWorkouts() 
-}, [])
-const history = useHistory();
-const [newWorkoutList, setNewWorkoutList] = useState([]);
+const Workout = ({workouts, setWorkouts, newWorkout, setNewWorkout, newWorkoutList, setNewWorkoutList}) => {
+
 const classes = useStyles();
-const fetchWorkouts = async () => {
-    const data = await axios({
-        method: 'get',
-        url: 'https://api-mygym.herokuapp.com/workout',
-        withCredentials: true
-      });
-    const workouts = data.data
-  console.log(workouts)
-  setNewWorkoutList(workouts)
-  }
-const startWorkout = (w) => {
-    w.active = true;
-    w.expanded = true;
-    workouts.push(w)
-    console.log(workouts)
-    setWorkouts(workouts)
-    history.push("/");
-}
+const handleClick = (w) => {
+    setNewWorkoutList(newWorkoutList.map(NW => { 
+        if(NW.name === w.name){
+            setNewWorkout({...NW, active: !NW.active})
+            return{
+                ...NW,
+                active: true,
+            }
+        }
+        return {
+            ...NW,
+            active: false
+        }
+    }))
+    console.log(newWorkout)
+  };
 
     return(
-        <Container style={{padding: "0", marginBottom: "120px"}}>
-            {newWorkoutList.map(w => {
-                return <Paper
-                variant="outlined"
-                square={true}
-                onClick={() => startWorkout(w)}
-                >
-                <Grid justify="center" container direction="row">
-                    <Grid item xs={10} >
-                        <Typography className={classes.description} gutterBottom variant="subtitle2">
-                            {w.name}    
-                        </Typography>
-                    </Grid>
-                </Grid>
-                </Paper>
-            })}
+    <Container style={{padding: "0", marginTop: "56px"}}>
+        <Typography variant="h5" style={{color: "#3f51b5", margin: "10px", marginTop: "70px"}}>
+            Välj pass
+        </Typography>
+            {newWorkoutList.map((w, index) => {
+                        return <Paper
+                        variant="outlined"
+                        square={true}
+                        key={index}
+                        className={`${w.active ? classes.Lowerbody : ""}`}
+                        onClick={() => handleClick(w)}
+                        >
+                        <Grid justify="center" container direction="row">
+                            <Grid item xs={10} >
+                                <Typography className={classes.description} gutterBottom variant="subtitle2">
+                                    {w.name}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        </Paper>
+                    })}
+            <Grid xs={12} item className={classes.button}>
+                <Button size="large"variant="outlined">bläddra</Button>       
+            </Grid>
         </Container>
     )
 

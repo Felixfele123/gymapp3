@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
       paddingY: theme.spacing(2),
       margin: 'auto',
       marginTop: "20px",
-      maxWidth: 500,
       maxHeight: "41px"
     },
     open: {
@@ -53,7 +52,7 @@ const Set = ({set, workouts, workout, exercise, setWorkouts}) => {
         square={false}
         className={`${classes.paper} ${classes.open}`} 
         >
-        <Grid xs container direction="row">
+        <Grid container direction="row">
           <Grid item xs={12}>
             <Typography className={classes.description} gutterBottom variant="subtitle2">
               <AddIcon style={{height: "20px", inline:false}} inline="true"/>
