@@ -33,13 +33,14 @@ const useStyles = makeStyles((theme) => ({
 const Set = ({set, workouts, workout, exercise, setWorkouts, newWorkout, excerciseIndex, setNewWorkout}) => {
     const classes = useStyles();
     const history = useHistory();
-    let newObj = newWorkout
+    
     const statusHandler = () => {
-      console.log(newObj)
+      let newObj = newWorkout
+      console.log(newObj.excirceses[excerciseIndex])
       newObj.excirceses[excerciseIndex].sets.push(
             {
-                duration: 12,
-                resistence: 80,
+                duration: newObj.excirceses[excerciseIndex].sets[0].duration,
+                resistence: newObj.excirceses[excerciseIndex].sets[0].resistence,
                 durationPrefix: newObj.excirceses[excerciseIndex].sets[0].durationPrefix,
                 resistencePrefix: newObj.excirceses[excerciseIndex].sets[0].resistencePrefix,
                 status: "open"

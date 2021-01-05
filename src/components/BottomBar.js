@@ -47,7 +47,7 @@ const BottomBar = ({workouts, newWorkout}) => {
       console.log(newWorkout)
       if(newWorkout.excirceses > ""){
         history.push("/ActiveWorkout");
-        setStatus("end workout") 
+        setStatus("save") 
       }
     }else if (history.location.pathname === '/ActiveWorkout'){
       newWorkout.active = false
