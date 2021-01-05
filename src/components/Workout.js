@@ -7,7 +7,6 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +39,9 @@ const useStyles = makeStyles((theme) => ({
 const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts, setTodos, key, setNewWorkout}) => {
   const classes = useStyles();
   const excirceses = workout.excirceses
-  const history = useHistory();
+
   const handleChange = (workout) => {
+    console.log("handle change")
     const newArr = workouts.map((w, index) => {
       if(index === workoutIndex){
        return {
@@ -53,21 +53,19 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
     }) 
     setWorkouts(newArr);
   };
-  let newArr = workouts
+  const newArr = [...workouts]
   const handleClick = () => {
+    console.log(newArr.length)
     if(newArr.length === 1){
       setWorkouts([])
     }else{
-      let removed = newArr.splice(workoutIndex, 1) 
-      setWorkouts(removed)      
+      newArr.splice(workoutIndex, 1)
+      setWorkouts(newArr)
     }
   };
-
-
-
     return(
 
-      <Accordion key={workout._id} expanded={workout.expanded} >
+      <Accordion key={workoutIndex} expanded={workout.expanded} >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
@@ -89,7 +87,6 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
               })}
               <span onClick={handleClick}>delete</span>
             </Grid>
-
           </Grid>
         </AccordionDetails>
       </Accordion>

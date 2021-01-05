@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Set from './Set'
 import NewSet from './NewSet'
-
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     setWrapper: {
@@ -39,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
 const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, workout, setWorkouts, workouts, newWorkout, setNewWorkout, newWorkoutExerciseIndex}) => {
     const sets = exercise.sets;
     const classes = useStyles();
+    const history = useHistory();
+
     return(
             <Grid className={classes.exercise} container>
                 <Grid xs={4} item className={classes.exerciseName}>
@@ -57,7 +59,7 @@ const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, work
                                 value={value} setValue={setValue} set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
                             </Grid>
                     ))}
-                    {workout.active && (
+                    {history.location.pathname !== '/' && (
                         <Grid item xs={11}>
                             <NewSet 
                             newWorkout={newWorkout} setNewWorkout={setNewWorkout}

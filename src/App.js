@@ -10,7 +10,6 @@ import { useCallback } from 'react'
 
 
 export default function ComplexGrid() {
-
   const [workouts, setWorkouts] = useState([]);
   const [activeWorkout, setActiveWorkout] = useState(false);
   const [newWorkout, setNewWorkout] = useState({});
@@ -21,7 +20,7 @@ export default function ComplexGrid() {
     setAppStatus(false)
       await axios({
         method: 'put',
-        url: 'http://localhost:3456/schema/5ff0601c4542a80429c9c2f4',
+        url: 'https://api-mygym.herokuapp.com/schema/5ff0601c4542a80429c9c2f4',
         withCredentials: true,
         data: {
           workouts: workouts
@@ -37,10 +36,11 @@ export default function ComplexGrid() {
     setAppStatus(true)
   }, [workouts]);
 
+
 const fetchWorkouts = async () => {
     const data = await axios({
         method: 'get',
-        url: 'http://localhost:3456/schema',
+        url: 'https://api-mygym.herokuapp.com/schema',
         withCredentials: true,
       });
   const workouts = data.data
@@ -50,7 +50,7 @@ const fetchWorkouts = async () => {
   const fetchWorkoutsList = async () => {
     const data = await axios({
         method: 'get',
-        url: 'http://localhost:3456/workout',
+        url: 'https://api-mygym.herokuapp.com/workout',
         withCredentials: true
       });
     const workouts = data.data
