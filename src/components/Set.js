@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-
+import cloneDeep from 'lodash/cloneDeep';
 
 const useStyles = makeStyles((theme) => ({
     success: {
@@ -27,12 +27,12 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, exercise, setWorkouts}) => {
+const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, exercise, setWorkouts, newWorkout}) => {
     const classes = useStyles();
 
     var myElement = document.getElementById('my-element');
-    let newArray = [...workouts]
     const handleResistence = (el) => {
+      let newObj = cloneDeep(newWorkout) 
       if(el) {
         // Align temp input element approximately where the input element is
         // so the cursor doesn't jump around
@@ -50,15 +50,15 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         __tempEl__.addEventListener("input", function(){
  
           if(__tempEl__.value === ""){
-            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
-            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+            newObj.excirceses[excerciseIndex].sets[setIndex] = 
+            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
               resistence: 0}
-            setWorkouts(newArray)
+            setWorkouts(newObj)
           }else{
-            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
-            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+            newObj.excirceses[excerciseIndex].sets[setIndex] = 
+            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
             resistence: __tempEl__.value}
-            setWorkouts(newArray)
+            setWorkouts(newObj)
 
           }
         }, {preventScroll: true});
@@ -66,8 +66,8 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
 
       }
     }
-    let newArray = [...workouts]
     const handleDuration = (el) => {
+      let newObj = cloneDeep(newWorkout) 
       if(document.getElementsByTagName('input')){
         const myNode = document.body.getElementsByTagName('input');
         myNode.innerHTML = '';
@@ -90,15 +90,15 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         __tempEl__.addEventListener("input", function(){
  
           if(__tempEl__.value === ""){
-            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
-            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+            newObj.excirceses[excerciseIndex].sets[setIndex] = 
+            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
               duration: 0}
-            setWorkouts(newArray)
+            setWorkouts(newObj)
           }else{
-            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
-            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+            newObj.excirceses[excerciseIndex].sets[setIndex] = 
+            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
             duration: __tempEl__.value}
-            setWorkouts(newArray)
+            setWorkouts(newObj)
           }
         });
         __tempEl__.addEventListener("focusout", function(){
@@ -107,26 +107,8 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         // The keyboard is open. Now do a delayed focus on the target element
       }
     }
-
-    const statusHandler = () => {
-      let newArray = [...workouts]
-      let status = newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex].status
-      if(status === "open"){
-        newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
-        {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
-          status: "closed"}      
-      }else{
-        newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
-        {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
-          status: "open"}
-      }
-      setWorkouts(newArray)
-    }
-
-
     return(
         <Paper
-        onClick={statusHandler}
         variant="outlined"
         square={false}
         className={`${classes.paper} ${set.status === 'closed' ? classes.closed : classes.open}`}

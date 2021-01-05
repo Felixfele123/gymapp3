@@ -55,7 +55,7 @@ const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, work
                     {sets.map((set, index) => (
                             <Grid key={index} item xs={11}>
                                 <Set 
-                                workoutIndex={workoutIndex} excerciseIndex={excerciseIndex} setIndex={index}
+                                workoutIndex={workoutIndex} excerciseIndex={excerciseIndex} setIndex={index} newWorkout={newWorkout}
                                 value={value} setValue={setValue} set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
                             </Grid>
                     ))}
