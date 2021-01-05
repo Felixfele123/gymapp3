@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from "react-router-dom";
+import cloneDeep from 'lodash/cloneDeep';
 
 const useStyles = makeStyles((theme) => ({
     success: {
@@ -33,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
 const Set = ({set, workouts, workout, exercise, setWorkouts, newWorkout, excerciseIndex, setNewWorkout}) => {
     const classes = useStyles();
     const history = useHistory();
-    
+      let newObj = cloneDeep(newWorkout) 
     const statusHandler = () => {
-      let newObj = newWorkout
+
       console.log(newObj.excirceses[excerciseIndex])
       newObj.excirceses[excerciseIndex].sets.push(
             {
