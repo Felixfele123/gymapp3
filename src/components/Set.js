@@ -31,7 +31,7 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
     const classes = useStyles();
 
     var myElement = document.getElementById('my-element');
-
+    let newArray = [...workouts]
     const handleResistence = (el) => {
       if(el) {
         // Align temp input element approximately where the input element is
@@ -50,13 +50,11 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         __tempEl__.addEventListener("input", function(){
  
           if(__tempEl__.value === ""){
-            let newArray = [...workouts]
             newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
             {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
               resistence: 0}
             setWorkouts(newArray)
           }else{
-            let newArray = [...workouts]
             newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
             {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
             resistence: __tempEl__.value}
@@ -68,6 +66,7 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
 
       }
     }
+    let newArray = [...workouts]
     const handleDuration = (el) => {
       if(document.getElementsByTagName('input')){
         const myNode = document.body.getElementsByTagName('input');
@@ -91,18 +90,15 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         __tempEl__.addEventListener("input", function(){
  
           if(__tempEl__.value === ""){
-            let newArray = [...workouts]
             newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
             {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
               duration: 0}
             setWorkouts(newArray)
           }else{
-            let newArray = [...workouts]
             newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
             {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
             duration: __tempEl__.value}
             setWorkouts(newArray)
-
           }
         });
         __tempEl__.addEventListener("focusout", function(){
