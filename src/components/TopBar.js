@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import { Grid } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,17 +18,30 @@ const useStyles = makeStyles((theme) => ({
       },
       timer: {
           textAlign: "right"
-      }
+      },
+      button: {
+        textAlign: "end",
+        color: "white"
+    },
 }));
 
-const TopBar = ({activeWorkout}) => {
+const TopBar = ({AppStatus, putWorkouts}) => {
   const classes = useStyles();
   return (
     <AppBar position="fixed">
     <Toolbar>
-        <Typography variant="subtitle1" className={classes.title}>
-        Mitt gym
-        </Typography>
+      <Grid container>
+      <Grid container direction="row">
+          <Grid item xs={6} >
+            <Typography variant="subtitle1" className={classes.title}>
+            Mitt gym
+          </Typography>   
+          </Grid>
+          <Grid item xs={6} className={classes.button}>
+            <Button onClick={putWorkouts} disabled={!AppStatus} size="small" variant="contained">Save changes</Button>  
+          </Grid>
+        </Grid>     
+      </Grid>
     </Toolbar>
     </AppBar>
   );

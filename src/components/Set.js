@@ -10,9 +10,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#4F8A10",
         color: "white"
     },
-    fail: {
-        backgroundColor: "#D8000C",
-        color: "white"
+    closed: {
+      backgroundColor: "#F5F5F5"
     },
     paper: {
       paddingY: theme.spacing(2),
@@ -28,50 +27,125 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Set = ({set, workouts, workout, exercise, setWorkouts}) => {
+const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, exercise, setWorkouts}) => {
     const classes = useStyles();
-    const workoutIndex = workouts.findIndex(w => w._id === workout._id )
-    const exerciseIndex = workouts[workoutIndex].excirceses.findIndex(ex => ex.excerciseID === exercise.excerciseID)
-    const setIndex = workouts[workoutIndex].excirceses[exerciseIndex].sets.findIndex(s => s.setID === set.setID)
-    const status = workouts[workoutIndex].excirceses[exerciseIndex].sets[setIndex].status
-    let newArray = [...workouts]
+
+    var myElement = document.getElementById('my-element');
+
+    const handleResistence = (el) => {
+      if(el) {
+        // Align temp input element approximately where the input element is
+        // so the cursor doesn't jump around
+        var __tempEl__ = document.createElement('input');
+        __tempEl__.pattern="[0-9]*"
+        __tempEl__.inputmode="decimal"
+        __tempEl__.style.position = 'absolute';
+        __tempEl__.style.top = (window.pageYOffset || document.documentElement.scrollTop) + 'px';
+        __tempEl__.style.left = el.offsetLeft + 'px';
+        __tempEl__.style.height = 0;
+        __tempEl__.style.opacity = 0;
+        // Put this temp element as a child of the page <body> and focus on it
+        document.body.appendChild(__tempEl__);
+        __tempEl__.focus();
+        __tempEl__.addEventListener("input", function(){
+ 
+          if(__tempEl__.value === ""){
+            let newArray = [...workouts]
+            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
+            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+              resistence: 0}
+            setWorkouts(newArray)
+          }else{
+            let newArray = [...workouts]
+            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
+            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+            resistence: __tempEl__.value}
+            setWorkouts(newArray)
+
+          }
+        }, {preventScroll: true});
+        // The keyboard is open. Now do a delayed focus on the target element
+
+      }
+    }
+    const handleDuration = (el) => {
+      if(document.getElementsByTagName('input')){
+        const myNode = document.body.getElementsByTagName('input');
+        myNode.innerHTML = '';
+      }
+      if(el) {
+        // Align temp input element approximately where the input element is
+        // so the cursor doesn't jump around
+        var __tempEl__ = document.createElement('input');
+        __tempEl__.pattern="[0-9]*"
+        __tempEl__.inputmode="decimal"
+        __tempEl__.style.position = 'absolute';
+        __tempEl__.style.top = (window.pageYOffset || document.documentElement.scrollTop) + 'px';
+        __tempEl__.style.left = el.offsetLeft + 'px';
+        __tempEl__.style.height = 0;
+        __tempEl__.style.opacity = 0;
+        // Put this temp element as a child of the page <body> and focus on it
+        document.body.appendChild(__tempEl__);
+        __tempEl__.id="temp"
+        __tempEl__.focus();
+        __tempEl__.addEventListener("input", function(){
+ 
+          if(__tempEl__.value === ""){
+            let newArray = [...workouts]
+            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
+            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+              duration: 0}
+            setWorkouts(newArray)
+          }else{
+            let newArray = [...workouts]
+            newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
+            {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+            duration: __tempEl__.value}
+            setWorkouts(newArray)
+
+          }
+        });
+        __tempEl__.addEventListener("focusout", function(){
+          document.body.removeChild(__tempEl__);
+        });
+        // The keyboard is open. Now do a delayed focus on the target element
+      }
+    }
+
     const statusHandler = () => {
-    switch(status){
-        case 'open':
-            newArray[workoutIndex].excirceses[exerciseIndex].sets[setIndex] = 
-            {...newArray[workoutIndex].excirceses[exerciseIndex].sets[setIndex], 
-            status: "success"}
-          break;
-        case 'success':
-            newArray[workoutIndex].excirceses[exerciseIndex].sets[setIndex] = 
-            {...newArray[workoutIndex].excirceses[exerciseIndex].sets[setIndex], 
-            status: "fail"}
-          break;
-        default:
-            newArray[workoutIndex].excirceses[exerciseIndex].sets[setIndex] = 
-            {...newArray[workoutIndex].excirceses[exerciseIndex].sets[setIndex], 
-            status: "open"}
-          break;
+      let newArray = [...workouts]
+      let status = newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex].status
+      if(status === "open"){
+        newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
+        {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+          status: "closed"}      
+      }else{
+        newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex] = 
+        {...newArray[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
+          status: "open"}
       }
       setWorkouts(newArray)
-      console.log(newArray)
     }
+
+
     return(
         <Paper
         onClick={statusHandler}
         variant="outlined"
         square={false}
-        className={`${classes.paper} ${set.status === 'fail' ? classes.fail : set.status === 'success' ? classes.success : classes.open}`} 
+        className={`${classes.paper} ${set.status === 'closed' ? classes.closed : classes.open}`}
+
+        id={setIndex}
         >
         <Grid container direction="row">
           <Grid item xs={6} >
-            <Typography className={classes.description} gutterBottom variant="subtitle2">
-              {set.resistence}
+            <Typography id="my-element" onClick={() => handleResistence(myElement)} className={classes.description} gutterBottom variant="subtitle2">
+              {set.resistence} {set.resistencePrefix}   
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography className={classes.description} gutterBottom variant="subtitle2">
-              {set.duration}
+            <Typography onClick={() => handleDuration(myElement)} className={classes.description} variant="subtitle2">
+              {set.duration} {set.durationPrefix}
             </Typography>
           </Grid>
         </Grid>

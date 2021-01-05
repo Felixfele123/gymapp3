@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,12 +31,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center"
     },
   }));
-const ActiveWorkout = ({newWorkout, setWorkouts}) => {
+const ActiveWorkout = ({newWorkout, setNewWorkout, setWorkouts}) => {
     const workouts = [newWorkout]
     const excirceses = newWorkout.excirceses
-    useEffect(() => {
-        console.log(newWorkout)
-    }, [newWorkout])
+
     const classes = useStyles();
     return (
         <Grid
@@ -50,7 +48,7 @@ const ActiveWorkout = ({newWorkout, setWorkouts}) => {
                 <Grid xs={12} item className={classes.exerciseName}>
                     <Paper variant="outlined" className={classes.paper}>
                         <Grid container>
-                            <Grid item xs={6} style={{padding:"10px"}}>
+                            <Grid  item xs={6} style={{padding:"10px"}}>
                                 {newWorkout.name}
                             </Grid>
                             <Grid item xs={6} style={{textAlign:"right",padding:"10px"}}>
@@ -61,8 +59,12 @@ const ActiveWorkout = ({newWorkout, setWorkouts}) => {
                 </Grid>
             </Grid>
         {excirceses.map((ex, index) => {
-            return <Excircese key={index} workout={newWorkout} workouts={workouts} 
-                excirceses={excirceses} exercise={ex} setWorkouts={setWorkouts}/>
+            return <Excircese 
+            workoutIndex={0} 
+            newWorkout={newWorkout} setNewWorkout={setNewWorkout}
+            key={index} workout={newWorkout} workouts={workouts} 
+            excirceses={excirceses} exercise={ex} setWorkouts={setWorkouts}
+            excerciseIndex={index}/>
         })}
         </Grid>
       );

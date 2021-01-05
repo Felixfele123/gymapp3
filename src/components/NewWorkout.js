@@ -45,7 +45,7 @@ const classes = useStyles();
 const handleClick = (w) => {
     setNewWorkoutList(newWorkoutList.map(NW => { 
         if(NW.name === w.name){
-            setNewWorkout({...NW, active: !NW.active})
+            setNewWorkout({...NW, active: true})
             return{
                 ...NW,
                 active: true,
@@ -56,7 +56,6 @@ const handleClick = (w) => {
             active: false
         }
     }))
-    console.log(newWorkout)
   };
 
     return(
@@ -82,7 +81,7 @@ const handleClick = (w) => {
                         </Paper>
                     })}
             <Grid xs={12} item className={classes.button}>
-                <Button size="large"variant="outlined">bläddra</Button>       
+                <Button size="large" variant="outlined">bläddra</Button>       
             </Grid>
         </Container>
     )

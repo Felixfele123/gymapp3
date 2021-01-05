@@ -7,6 +7,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,12 +37,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
+const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts, setTodos, key, setNewWorkout}) => {
   const classes = useStyles();
   const excirceses = workout.excirceses
+  const history = useHistory();
   const handleChange = (workout) => {
-    const newArr = workouts.map(w => {
-      if(w.workoutID === workout.workoutID){
+    const newArr = workouts.map((w, index) => {
+      if(index === workoutIndex){
        return {
         ...w,
         expanded: !w.expanded
@@ -50,6 +52,15 @@ const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
       return w
     }) 
     setWorkouts(newArr);
+  };
+  let newArr = workouts
+  const handleClick = () => {
+    if(newArr.length === 1){
+      setWorkouts([])
+    }else{
+      let removed = newArr.splice(workoutIndex, 1) 
+      setWorkouts(removed)      
+    }
   };
 
 
@@ -69,11 +80,16 @@ const Workout = ({workout, workouts, setWorkouts, setTodos, key}) => {
         <AccordionDetails style={{padding: "0px"}}>
         <Grid item sm container>
             <Grid item xs>
-              {excirceses.map(ex => {
-                return <Excircese key={ex.excerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} 
+              {excirceses.map((ex, index) => {
+                return <Excircese 
+                setNewWorkout={setNewWorkout}
+                workoutIndex={workoutIndex} excerciseIndex={index} 
+                value={value} setValue={setValue} key={index} workout={workout} workouts={workouts} setWorkouts={setWorkouts} 
                 excirceses={excirceses} exercise={ex}/>
               })}
+              <span onClick={handleClick}>delete</span>
             </Grid>
+
           </Grid>
         </AccordionDetails>
       </Accordion>

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     success: {
@@ -29,21 +30,23 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Set = ({set, workouts, workout, exercise, setWorkouts}) => {
+const Set = ({set, workouts, workout, exercise, setWorkouts, newWorkout, excerciseIndex, setNewWorkout}) => {
     const classes = useStyles();
-    const workoutIndex = workouts.findIndex(w => w._id === workout._id )
-    const exerciseIndex = workouts[workoutIndex].excirceses.findIndex(ex => ex.excerciseID === exercise.excerciseID)
-    let newArray = [...workouts]
+    const history = useHistory();
+    let newObj = newWorkout
     const statusHandler = () => {
-        newArray[workoutIndex].excirceses[exerciseIndex].sets.push(
+      console.log(newObj)
+      newObj.excirceses[excerciseIndex].sets.push(
             {
-                setID: newArray[workoutIndex].excirceses[exerciseIndex].sets.length + 2,
-                duration: "12 reps",
-                resistence: "80 kg",
+                duration: 12,
+                resistence: 80,
+                durationPrefix: newObj.excirceses[excerciseIndex].sets[0].durationPrefix,
+                resistencePrefix: newObj.excirceses[excerciseIndex].sets[0].resistencePrefix,
                 status: "open"
             }
         )
-        setWorkouts(newArray)
+        setNewWorkout(newObj)
+        history.push("/ActiveWorkout") 
     }
     return(
         <Paper

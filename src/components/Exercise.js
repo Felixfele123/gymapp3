@@ -8,7 +8,7 @@ import NewSet from './NewSet'
 
 const useStyles = makeStyles((theme) => ({
     setWrapper: {
-
+        paddingBottom: "30px"
     },
     exercise: {
       marginTop: "5px",
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Exercise = ({exercise, workout, setWorkouts, workouts}) => {
+const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, workout, setWorkouts, workouts, newWorkout, setNewWorkout, newWorkoutExerciseIndex}) => {
     const sets = exercise.sets;
     const classes = useStyles();
     return(
@@ -50,14 +50,19 @@ const Exercise = ({exercise, workout, setWorkouts, workouts}) => {
                 alignItems="center"
                 justify="center"
                 >
-                    {sets.map(set => (
-                        <Grid key={set.setID} item xs={11}>
-                            <Set set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
-                        </Grid>
+                    {sets.map((set, index) => (
+                            <Grid key={index} item xs={11}>
+                                <Set 
+                                workoutIndex={workoutIndex} excerciseIndex={excerciseIndex} setIndex={index}
+                                value={value} setValue={setValue} set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
+                            </Grid>
                     ))}
                     {workout.active && (
                         <Grid item xs={11}>
-                            <NewSet key={exercise.exerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
+                            <NewSet 
+                            newWorkout={newWorkout} setNewWorkout={setNewWorkout}
+                            workoutIndex={workoutIndex} excerciseIndex={excerciseIndex}
+                            key={exercise.exerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
                         </Grid>
                     )}
                 </Grid>

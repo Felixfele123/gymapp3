@@ -38,26 +38,27 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const BottomBar = ({putWorkouts, newWorkoutList, setActiveWorkout, workouts, setWorkouts, newWorkout}) => {
+const BottomBar = ({workouts, newWorkout}) => {
   const classes = useStyles();
   const history = useHistory();
   const [status, setStatus] = useState("start workout");
   const handleClick = () => {
     if (history.location.pathname === '/newWorkout'){
-      history.push("/ActiveWorkout");
-      setStatus("end workout") 
+      console.log(newWorkout)
+      if(newWorkout.excirceses > ""){
+        history.push("/ActiveWorkout");
+        setStatus("end workout") 
+      }
     }else if (history.location.pathname === '/ActiveWorkout'){
       newWorkout.active = false
       newWorkout = {...newWorkout, 
         finishedDate: new Date().toJSON().slice(0,10).replace(/-/g,'')
       }
-      console.log(newWorkout)
       workouts.push(newWorkout)
       history.push("/");  
       setStatus("start workout") 
-      putWorkouts()  
     }else{
-      history.push("/newWorkout");  
+      history.push("/newWorkout")  
       setStatus("next")   
     }
   };
