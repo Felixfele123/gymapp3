@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -27,13 +27,14 @@ const useStyles = makeStyles((theme) => ({
 
 const TopBar = ({AppStatus, putWorkouts}) => {
   const classes = useStyles();
+  const history = useHistory();
   return (
     <AppBar position="fixed">
     <Toolbar>
       <Grid container>
       <Grid container direction="row">
           <Grid item xs={6} >
-            <Typography variant="subtitle1" className={classes.title}>
+            <Typography onClick={() => {history.push("/")}} variant="subtitle1" className={classes.title}>
             Mitt gym
           </Typography>   
           </Grid>
