@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Set from './Set'
 import NewSet from './NewSet'
+import RemoveSet from './RemoveSet'
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#D8000C",
         color: "white"
     },
+    changeset: {
+        paddingLeft: "60px",
+        paddingRight: "60px"
+    }
   }));
 
 const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, workout, setWorkouts, workouts, newWorkout, setNewWorkout, newWorkoutExerciseIndex}) => {
@@ -62,12 +67,24 @@ const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, work
                             </Grid>
                     ))}
                     {history.location.pathname !== '/' && (
-                        <Grid item xs={11}>
-                            <NewSet 
-                            newWorkout={newWorkout} setNewWorkout={setNewWorkout}
-                            workoutIndex={workoutIndex} excerciseIndex={excerciseIndex}
-                            key={exercise.exerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
-                        </Grid>
+                        <Grid xs={11} item>
+                            <Grid container direction="row">
+                                <Grid xs={6} item className={classes.changeset}>
+                                    <RemoveSet 
+                                    newWorkout={newWorkout} setNewWorkout={setNewWorkout}
+                                    workoutIndex={workoutIndex} excerciseIndex={excerciseIndex}
+                                    key={exercise.exerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}
+                                    /> 
+                                </Grid>    
+                                <Grid xs={6} item className={classes.changeset}>
+                                    <NewSet 
+                                    newWorkout={newWorkout} setNewWorkout={setNewWorkout}
+                                    workoutIndex={workoutIndex} excerciseIndex={excerciseIndex}
+                                    key={exercise.exerciseID} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}
+                                    /> 
+                                </Grid>          
+                            </Grid>
+                        </Grid>                           
                     )}
                 </Grid>
             </Grid>
