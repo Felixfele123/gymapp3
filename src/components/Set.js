@@ -1,9 +1,11 @@
-import React, { } from "react"
+import React, {  } from "react"
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import cloneDeep from 'lodash/cloneDeep';
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
     success: {
@@ -27,13 +29,14 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, exercise, setWorkouts, newWorkout}) => {
+const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, exercise, setWorkouts, newWorkout, setNewWorkout, myElement}) => {
     const classes = useStyles();
+    const history = useHistory();
 
-    var myElement = document.getElementById('my-element');
     const handleResistence = (el) => {
-      let newObj = cloneDeep(newWorkout) 
+
       if(el) {
+ 
         // Align temp input element approximately where the input element is
         // so the cursor doesn't jump around
         var __tempEl__ = document.createElement('input');
@@ -50,16 +53,13 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         __tempEl__.addEventListener("input", function(){
  
           if(__tempEl__.value === ""){
-            newObj.excirceses[excerciseIndex].sets[setIndex] = 
-            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
-              resistence: 0}
-            setWorkouts(newObj)
+            let newObj = cloneDeep(newWorkout)
+            newObj.excirceses[excerciseIndex].sets[setIndex].resistence = 0
+            setNewWorkout(newObj)
           }else{
-            newObj.excirceses[excerciseIndex].sets[setIndex] = 
-            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
-            resistence: __tempEl__.value}
-            setWorkouts(newObj)
-
+            let newObj = cloneDeep(newWorkout)
+            newObj.excirceses[excerciseIndex].sets[setIndex].resistence = __tempEl__.value
+            setNewWorkout(newObj)
           }
         }, {preventScroll: true});
         // The keyboard is open. Now do a delayed focus on the target element
@@ -67,8 +67,10 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
       }
     }
     const handleDuration = (el) => {
-      let newObj = cloneDeep(newWorkout) 
+      console.log(el)
       if(document.getElementsByTagName('input')){
+        console.log(document.getElementsByTagName('input'))
+        console.log("removed")
         const myNode = document.body.getElementsByTagName('input');
         myNode.innerHTML = '';
       }
@@ -79,7 +81,7 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         __tempEl__.pattern="[0-9]*"
         __tempEl__.inputmode="decimal"
         __tempEl__.style.position = 'absolute';
-        __tempEl__.style.top = ((window.pageYOffset || document.documentElement.scrollTop) + 50) + 'px';
+        __tempEl__.style.top = (window.pageYOffset || document.documentElement.scrollTop) + 'px';
         __tempEl__.style.left = el.offsetLeft + 'px';
         __tempEl__.style.height = 0;
         __tempEl__.style.opacity = 0;
@@ -90,15 +92,13 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         __tempEl__.addEventListener("input", function(){
  
           if(__tempEl__.value === ""){
-            newObj.excirceses[excerciseIndex].sets[setIndex] = 
-            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
-              duration: 0}
-            setWorkouts(newObj)
+            let newObj = cloneDeep(newWorkout)
+            newObj.excirceses[excerciseIndex].sets[setIndex].duration = 0
+            setNewWorkout(newObj)
           }else{
-            newObj.excirceses[excerciseIndex].sets[setIndex] = 
-            {...newObj[workoutIndex].excirceses[excerciseIndex].sets[setIndex], 
-            duration: __tempEl__.value}
-            setWorkouts(newObj)
+            let newObj = cloneDeep(newWorkout)
+            newObj.excirceses[excerciseIndex].sets[setIndex].duration = __tempEl__.value
+            setNewWorkout(newObj)
           }
         });
         __tempEl__.addEventListener("focusout", function(){
@@ -106,14 +106,14 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
         });
         // The keyboard is open. Now do a delayed focus on the target element
       }
+      history.push("/ActiveWorkout");
     }
+
     return(
         <Paper
         variant="outlined"
         square={false}
         className={`${classes.paper} ${set.status === 'closed' ? classes.closed : classes.open}`}
-
-        id={setIndex}
         >
         <Grid container direction="row">
           <Grid item xs={6} >

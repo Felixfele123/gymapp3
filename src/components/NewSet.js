@@ -47,6 +47,7 @@ const Set = ({set, workouts, workout, exercise, setWorkouts, newWorkout, excerci
                 status: "open"
             }
         )
+
         setNewWorkout(newObj)
         history.push("/ActiveWorkout") 
     }

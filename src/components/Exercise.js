@@ -40,7 +40,7 @@ const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, work
     const sets = exercise.sets;
     const classes = useStyles();
     const history = useHistory();
-
+    const myElement = document.getElementById('my-element');
     return(
             <Grid className={classes.exercise} container>
                 <Grid xs={4} item className={classes.exerciseName}>
@@ -55,6 +55,8 @@ const Exercise = ({workoutIndex, excerciseIndex, value, setValue, exercise, work
                     {sets.map((set, index) => (
                             <Grid key={index} item xs={11}>
                                 <Set 
+                                myElement={myElement}
+                                setNewWorkout={setNewWorkout}
                                 workoutIndex={workoutIndex} excerciseIndex={excerciseIndex} setIndex={index} newWorkout={newWorkout}
                                 value={value} setValue={setValue} set={set} workout={workout} workouts={workouts} setWorkouts={setWorkouts} exercise={exercise}/>        
                             </Grid>
