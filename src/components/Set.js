@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
         color: "white"
     },
     closed: {
-      backgroundColor: "#F5F5F5"
+      backgroundColor: "#068701",
+      color: "white"
     },
     paper: {
       paddingY: theme.spacing(2),
@@ -34,96 +35,112 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
     const history = useHistory();
 
     const handleResistence = (el) => {
-
-      if(el) {
+      if(history.location.pathname === '/ActiveWorkout'){
+        if(el) {
  
-        // Align temp input element approximately where the input element is
-        // so the cursor doesn't jump around
-        var __tempEl__ = document.createElement('input');
-        __tempEl__.pattern="[0-9]*"
-        __tempEl__.inputmode="decimal"
-        __tempEl__.style.position = 'absolute';
-        __tempEl__.style.top = (window.pageYOffset || document.documentElement.scrollTop) + 'px';
-        __tempEl__.style.left = el.offsetLeft + 'px';
-        __tempEl__.style.height = 0;
-        __tempEl__.style.opacity = 0;
-        // Put this temp element as a child of the page <body> and focus on it
-        document.body.appendChild(__tempEl__);
-        __tempEl__.focus();
-        __tempEl__.addEventListener("input", function(){
- 
-          if(__tempEl__.value === ""){
-            let newObj = cloneDeep(newWorkout)
-            newObj.excirceses[excerciseIndex].sets[setIndex].resistence = 0
-            setNewWorkout(newObj)
-          }else{
-            let newObj = cloneDeep(newWorkout)
-            newObj.excirceses[excerciseIndex].sets[setIndex].resistence = __tempEl__.value
-            setNewWorkout(newObj)
-          }
-        }, {preventScroll: true});
-        // The keyboard is open. Now do a delayed focus on the target element
-
+          // Align temp input element approximately where the input element is
+          // so the cursor doesn't jump around
+          var __tempEl__ = document.createElement('input');
+          __tempEl__.pattern="[0-9]*"
+          __tempEl__.inputmode="decimal"
+          __tempEl__.style.position = 'absolute';
+          __tempEl__.style.top = (window.pageYOffset || document.documentElement.scrollTop) + 'px';
+          __tempEl__.style.left = el.offsetLeft + 'px';
+          __tempEl__.style.height = 0;
+          __tempEl__.style.opacity = 0;
+          // Put this temp element as a child of the page <body> and focus on it
+          document.body.appendChild(__tempEl__);
+          __tempEl__.focus();
+          __tempEl__.addEventListener("input", function(){
+   
+            if(__tempEl__.value === ""){
+              let newObj = cloneDeep(newWorkout)
+              newObj.excirceses[excerciseIndex].sets[setIndex].resistence = 0
+              setNewWorkout(newObj)
+            }else{
+              let newObj = cloneDeep(newWorkout)
+              newObj.excirceses[excerciseIndex].sets[setIndex].resistence = __tempEl__.value
+              setNewWorkout(newObj)
+            }
+          }, {preventScroll: true});
+          // The keyboard is open. Now do a delayed focus on the target element
+          history.push("/ActiveWorkout");
+        }
       }
     }
     const handleDuration = (el) => {
-      console.log(el)
-      if(document.getElementsByTagName('input')){
-        console.log(document.getElementsByTagName('input'))
-        console.log("removed")
-        const myNode = document.body.getElementsByTagName('input');
-        myNode.innerHTML = '';
+      if(history.location.pathname === '/ActiveWorkout'){
+        if(document.getElementsByTagName('input')){
+          const myNode = document.body.getElementsByTagName('input');
+          myNode.innerHTML = '';
+        }
+        if(el) {
+          // Align temp input element approximately where the input element is
+          // so the cursor doesn't jump around
+          var __tempEl__ = document.createElement('input');
+          __tempEl__.pattern="[0-9]*"
+          __tempEl__.inputmode="decimal"
+          __tempEl__.style.position = 'absolute';
+          __tempEl__.style.top = (window.pageYOffset || document.documentElement.scrollTop) + 'px';
+          __tempEl__.style.left = el.offsetLeft + 'px';
+          __tempEl__.style.height = 0;
+          __tempEl__.style.opacity = 0;
+          // Put this temp element as a child of the page <body> and focus on it
+          document.body.appendChild(__tempEl__);
+          __tempEl__.id="temp"
+          __tempEl__.focus();
+          __tempEl__.addEventListener("input", function(){
+   
+            if(__tempEl__.value === ""){
+              let newObj = cloneDeep(newWorkout)
+              newObj.excirceses[excerciseIndex].sets[setIndex].duration = 0
+              setNewWorkout(newObj)
+            }else{
+              let newObj = cloneDeep(newWorkout)
+              newObj.excirceses[excerciseIndex].sets[setIndex].duration = __tempEl__.value
+              setNewWorkout(newObj)
+            }
+          });
+          __tempEl__.addEventListener("focusout", function(){
+            document.body.removeChild(__tempEl__);
+          });
+          // The keyboard is open. Now do a delayed focus on the target element
+        }
+        history.push("/ActiveWorkout");
       }
-      if(el) {
-        // Align temp input element approximately where the input element is
-        // so the cursor doesn't jump around
-        var __tempEl__ = document.createElement('input');
-        __tempEl__.pattern="[0-9]*"
-        __tempEl__.inputmode="decimal"
-        __tempEl__.style.position = 'absolute';
-        __tempEl__.style.top = (window.pageYOffset || document.documentElement.scrollTop) + 'px';
-        __tempEl__.style.left = el.offsetLeft + 'px';
-        __tempEl__.style.height = 0;
-        __tempEl__.style.opacity = 0;
-        // Put this temp element as a child of the page <body> and focus on it
-        document.body.appendChild(__tempEl__);
-        __tempEl__.id="temp"
-        __tempEl__.focus();
-        __tempEl__.addEventListener("input", function(){
- 
-          if(__tempEl__.value === ""){
-            let newObj = cloneDeep(newWorkout)
-            newObj.excirceses[excerciseIndex].sets[setIndex].duration = 0
-            setNewWorkout(newObj)
-          }else{
-            let newObj = cloneDeep(newWorkout)
-            newObj.excirceses[excerciseIndex].sets[setIndex].duration = __tempEl__.value
-            setNewWorkout(newObj)
-          }
-        });
-        __tempEl__.addEventListener("focusout", function(){
-          document.body.removeChild(__tempEl__);
-        });
-        // The keyboard is open. Now do a delayed focus on the target element
+    }
+    const statusHandler = () => {
+      if(history.location.pathname === '/ActiveWorkout'){
+        let newObj = cloneDeep(newWorkout)
+        let status = newObj.excirceses[excerciseIndex].sets[setIndex].status
+        if(status === "open"){
+          newObj.excirceses[excerciseIndex].sets[setIndex].status = "closed"
+        }else{
+          newObj.excirceses[excerciseIndex].sets[setIndex].status = "open"    
+        }
+        setNewWorkout(newObj) 
+        console.log("double click")
       }
-      history.push("/ActiveWorkout");
     }
 
     return(
         <Paper
         variant="outlined"
         square={false}
-        className={`${classes.paper} ${set.status === 'closed' ? classes.closed : classes.open}`}
+        className={`${classes.paper} ${set.status === 'closed' && history.location.pathname !== "/" ? classes.closed : classes.open}`}
+        onDoubleClick={() => statusHandler()}
         >
         <Grid container direction="row">
           <Grid item xs={6} >
-            <Typography id="my-element" onClick={() => handleResistence(myElement)} className={classes.description} gutterBottom variant="subtitle2">
-              {set.resistence} {set.resistencePrefix}   
+            <Typography className={classes.description} gutterBottom variant="subtitle2">
+            <span id="my-element" onClick={() => handleResistence(myElement)}> {set.resistence} </span> 
+            {set.resistencePrefix}   
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography onClick={() => handleDuration(myElement)} className={classes.description} variant="subtitle2">
-              {set.duration} {set.durationPrefix}
+            <Typography className={classes.description} variant="subtitle2">
+            <span id="my-element" onClick={() => handleDuration(myElement)}> {set.duration} </span> 
+              {set.durationPrefix}
             </Typography>
           </Grid>
         </Grid>
@@ -132,4 +149,3 @@ const Set = ({workoutIndex, excerciseIndex, setIndex, set, workouts, workout, ex
 }
 
 export default Set;
-

@@ -8,13 +8,13 @@ import BottomBar from "./components/BottomBar"
 import ActiveWorkout from "./components/ActiveWorkout"
 import { useCallback } from 'react'
 
-
 export default function ComplexGrid() {
   const [workouts, setWorkouts] = useState([]);
   const [activeWorkout, setActiveWorkout] = useState(false);
   const [newWorkout, setNewWorkout] = useState({});
   const [newWorkoutList, setNewWorkoutList] = useState([]);
   const [AppStatus, setAppStatus] = useState(false);
+  const [status, setStatus] = useState("start workout");
 
   const putWorkouts = useCallback(async() => {
     setAppStatus(false)
@@ -35,6 +35,7 @@ export default function ComplexGrid() {
   useEffect(() => {
     setAppStatus(true)
   }, [workouts]);
+
 
 
 const fetchWorkouts = async () => {
@@ -61,11 +62,19 @@ const fetchWorkouts = async () => {
       <div className="App">
         <TopBar activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} putWorkouts={putWorkouts} AppStatus={AppStatus}/>
           <Switch >
-            <Route path="/" exact component={() => <Home activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout}/>}/>
-            <Route path="/ActiveWorkout" exact component={() => <ActiveWorkout activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout}/>}/>
-            <Route path="/NewWorkout" exact component={() => <NewWorkout style={{marginTop: "70px"}} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout} newWorkoutList={newWorkoutList} setNewWorkoutList={setNewWorkoutList}/>}/>
+            <Route path="/" exact component={() => 
+              <Home status={status} setStatus={setStatus} activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout}/>
+            }/>
+            <Route path="/ActiveWorkout" exact component={() => 
+              <ActiveWorkout status={status} setStatus={setStatus} activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout}/>
+            }/>
+            <Route path="/NewWorkout" exact component={() => 
+              <NewWorkout style={{marginTop: "70px"}} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout} newWorkoutList={newWorkoutList} setNewWorkoutList={setNewWorkoutList}/>
+            }/>
           </Switch>
-        <BottomBar newWorkoutList={newWorkoutList} activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} setWorkouts={setWorkouts} workouts={workouts} newWorkout={newWorkout}/>
+        <BottomBar 
+        status={status} setStatus={setStatus}
+        newWorkoutList={newWorkoutList} activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} setWorkouts={setWorkouts} workouts={workouts} newWorkout={newWorkout}/>
       </div>
     </Router>
   );

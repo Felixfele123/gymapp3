@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useEffect} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,9 +31,15 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center"
     },
   }));
-const ActiveWorkout = ({newWorkout, setNewWorkout, setWorkouts}) => {
+const ActiveWorkout = ({setStatus, status, newWorkout, setNewWorkout, setWorkouts}) => {
+
+    useEffect(() => {
+        setStatus("Save")
+      }, [setStatus]);
+
     const workouts = [newWorkout]
     const excirceses = newWorkout.excirceses
+
 
     const classes = useStyles();
     return (

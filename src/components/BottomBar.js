@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -38,10 +38,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const BottomBar = ({workouts, newWorkout, setWorkouts}) => {
+const BottomBar = ({setStatus, status, workouts, newWorkout, setWorkouts}) => {
   const classes = useStyles();
   const history = useHistory();
-  const [status, setStatus] = useState("start workout");
   const handleClick = () => {
     if (history.location.pathname === '/newWorkout'){
       if(newWorkout.excirceses > ""){
