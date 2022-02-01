@@ -48,7 +48,7 @@ const Item = styled(Paper)(({ theme }) => ({
   padding:20,
   color: theme.palette.text.secondary,
   height: 80,
-  lineHeight: '20px',
+  lineHeight: '10px',
 }));
 
 const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts, setTodos, key, setNewWorkout}) => {
@@ -92,7 +92,7 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
             >
               {["tre i rad", "fem i rad", "tetriss"].map((spel,index) => (
                 <Item key={index} elevation={5} onClick={handleClick}>
-                  <h2> {spel}</h2>
+                  <p> {spel}</p>
                 </Item>
               ))}
             </Box>
