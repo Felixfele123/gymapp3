@@ -76,7 +76,7 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
 
     return(
 
-      <Grid container spacing={2}>
+      <Grid container>
       {[darkTheme].map((theme, index) => (
         <Grid item xs={12} key={index}>
           <ThemeProvider theme={theme}>
@@ -87,12 +87,11 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
                 display: 'grid',
                 gridTemplateColumns: { md: '2fr 2fr', xs:'2fr 2fr'  },
                 gap: 2,
-                
               }}
             >
               {["TRE I RAD", "FEM I RAD", "TETRISS", "PATIENS", "SPINDEL HARPA", "SNAKE", "RUNSTEN", "TRETTIO ETT", "VÄND TIA", "FEMHUNDRA", "STRESS", "PLUMP", "ALFAPET", "FORTNITE"].map((spel,index) => (
-                <Item key={index} elevation={8} onClick={handleClick}>
-                  <p> {spel}</p>
+                <Item key={index} elevation={6} onClick={handleClick}>
+                   <a>{spel}</a>
                 </Item>
               ))}
             </Box>

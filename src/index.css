@@ -24,4 +24,6 @@ h6{
 
 p{
   color: antiquewhite!important;
+  margin: 0!important;
+  word-spacing: 2px!important
 }
