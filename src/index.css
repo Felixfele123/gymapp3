@@ -5,9 +5,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #121212;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.MuiAppBar-root{
+  color: #000000!important;
+  background-color: #000000!important;
+}
+
+h6{
+  color: antiquewhite;
+}
+
+p{
+  color: antiquewhite!important;
 }
