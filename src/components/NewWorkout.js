@@ -79,7 +79,7 @@ const handleClick = (w) => {
                 <h2>Rules</h2>
                 <p>Each player has to take turns</p>
                 <p>The player who fills 3 consecutive rows first wins</p>
-            <center><button id="new">NEW GAME</button></center>
+            <center><button id="new321">NEW GAME</button></center>
 
             </div>
 

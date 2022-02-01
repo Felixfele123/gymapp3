@@ -90,8 +90,8 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
                 
               }}
             >
-              {["tre i rad", "fem i rad", "tetriss"].map((spel,index) => (
-                <Item key={index} elevation={5} onClick={handleClick}>
+              {["TRE I RAD", "FEM I RAD", "TETRISS", "PATIENS", "SPINDEL HARPA", "SNAKE", "RUNSTEN", "TRETTIO ETT", "VÄND TIA", "FEMHUNDRA", "STRESS", "PLUMP", "ALFAPET", "FORTNITE"].map((spel,index) => (
+                <Item key={index} elevation={8} onClick={handleClick}>
                   <p> {spel}</p>
                 </Item>
               ))}
