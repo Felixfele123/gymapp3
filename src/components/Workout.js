@@ -56,8 +56,11 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
   const excirceses = workout.excirceses
   const history = useHistory();
 
-  const handleClick = () => {
+  const handleClick = (spel) => {
+    console.log(spel)
+    if(spel.title == "TRE I RAD"){
       history.push("/newWorkout")  
+    }
   };
   const handleChange = (workout) => {
     console.log("handle change")
@@ -89,9 +92,23 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
                 gap: 2,
               }}
             >
-              {["TRE I RAD", "FEM I RAD", "TETRISS", "PATIENS", "SPINDEL HARPA", "SNAKE", "RUNSTEN", "TRETTIO ETT", "VÄND TIA", "FEMHUNDRA", "STRESS", "PLUMP", "ALFAPET", "FORTNITE"].map((spel,index) => (
-                <Item key={index} elevation={6} onClick={handleClick}>
-                   <a>{spel}</a>
+              {[
+                {title: "TRE I RAD", elevation: 10},
+                {title: "FEM I RAD", elevation: 2},
+                {title: "TETRISS", elevation: 2},
+                {title: "PATIENS", elevation: 2},
+                {title: "SPINDEL HARPA", elevation: 2},
+                {title: "SNAKE", elevation: 2},
+                {title: "RUNSTEN", elevation: 2},
+                {title: "TRETTIO ETT", elevation: 2},
+                {title: "VÄND TIA", elevation: 2},
+                {title: "FEMHUNDRA", elevation: 2},
+                {title: "STRESS", elevation: 2},
+                {title: "PLUMP", elevation: 2},
+                {title: "ALFAPET", elevation: 2},
+                  ].map((spel,index) => (
+                <Item key={index} id={"game" + index} elevation={spel.elevation}  onClick={() => handleClick(spel)}>
+                   <a>{spel.title}</a>
                 </Item>
               ))}
             </Box>
