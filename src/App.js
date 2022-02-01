@@ -72,9 +72,6 @@ const fetchWorkouts = async () => {
               <NewWorkout style={{marginTop: "70px"}} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout} newWorkoutList={newWorkoutList} setNewWorkoutList={setNewWorkoutList}/>
             }/>
           </Switch>
-        <BottomBar 
-        status={status} setStatus={setStatus}
-        newWorkoutList={newWorkoutList} activeWorkout={activeWorkout} setActiveWorkout={setActiveWorkout} setWorkouts={setWorkouts} workouts={workouts} newWorkout={newWorkout}/>
       </div>
     </Router>
   );

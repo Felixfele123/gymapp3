@@ -35,7 +35,7 @@ const TopBar = ({AppStatus, putWorkouts}) => {
       <Grid container direction="row">
           <Grid item xs={6} >
             <Typography onClick={() => {history.push("/")}} variant="subtitle1" className={classes.title}>
-            Mitt gym
+            Enkla spel
           </Typography>   
           </Grid>
           <Grid item xs={6} className={classes.button}>
