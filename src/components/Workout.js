@@ -64,6 +64,9 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
     if(spel.title == "BREAKOUT"){
       history.push("/Breakout")  
     }
+    if(spel.title == "TETRIS"){
+      history.push("/Tetris")  
+    }
   };
   const handleChange = (workout) => {
     console.log("handle change")
@@ -96,20 +99,10 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
               }}
             >
               {[
-                {title: "TRE I RAD", elevation: 10},
-                {title: "FEM I RAD", elevation: 2},
-                {title: "TETRISS", elevation: 2},
-                {title: "PATIENS", elevation: 2},
-                {title: "SPINDEL HARPA", elevation: 2},
-                {title: "SNAKE", elevation: 2},
-                {title: "RUNSTEN", elevation: 2},
-                {title: "TRETTIO ETT", elevation: 2},
-                {title: "VÄND TIA", elevation: 2},
-                {title: "FEMHUNDRA", elevation: 2},
-                {title: "STRESS", elevation: 2},
-                {title: "PLUMP", elevation: 2},
-                {title: "ALFAPET", elevation: 2},
-                {title: "BREAKOUT", elevation: 10},
+                {title: "TRE I RAD", elevation: 8},
+                {title: "BREAKOUT", elevation: 8},
+                {title: "TETRIS", elevation: 8},
+                
                   ].map((spel,index) => (
                 <Item key={index} id={"game" + index} elevation={spel.elevation}  onClick={() => handleClick(spel)}>
                    <a>{spel.title}</a>
