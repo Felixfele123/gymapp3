@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from "react";
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home'
 import NewWorkout from './components/NewWorkout'
+import Breakout from './components/Breakout'
 import axios from 'axios'
 import TopBar from "./components/TopBar"
 import BottomBar from "./components/BottomBar"
@@ -70,6 +71,9 @@ const fetchWorkouts = async () => {
             }/>
             <Route path="/NewWorkout" exact component={() => 
               <NewWorkout style={{marginTop: "70px"}} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout} newWorkoutList={newWorkoutList} setNewWorkoutList={setNewWorkoutList}/>
+            }/>
+            <Route path="/Breakout" exact component={() => 
+              <Breakout style={{marginTop: "70px"}} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout} newWorkoutList={newWorkoutList} setNewWorkoutList={setNewWorkoutList}/>
             }/>
           </Switch>
       </div>

@@ -8,9 +8,11 @@ setInterval(() => {
 	if(n === null){
 		game = false
 	}
+	console.log(game)
 	if(n != null && game !== true){
 		console.log("loading!!!!!")
 		//1. Initial states 
+
 		var num;
 		var box;
 		var ctx;
@@ -19,19 +21,24 @@ setInterval(() => {
 		var symbol;
 		var winner;
 		var gameOver = false;
-		filled = [false, false, false, false, false, false, false, false, false];
-		symbol = ['', '', '', '', '', '', '', '', ''];
-		winner = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
-		
 		//2. NewGame - event + function 
 		//Create a new game click event
-		
+		newGame()
 		n.addEventListener("click", newGame);
 		
 		//newGame function
 		function newGame() {
-			document.location.reload();
-			console.log("newgameeee")
+			turn = 1;
+			gameOver = false;
+			filled = [false, false, false, false, false, false, false, false, false];
+			symbol = ['', '', '', '', '', '', '', '', ''];
+			winner = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
+			filled.forEach((el, index) => {
+				box = document.getElementById("canvas" + (index+1));
+				ctx = box.getContext("2d");
+				ctx.clearRect(0, 0, box.width, box.height);
+			});
+
 		}
 	
 		
@@ -123,5 +130,5 @@ setInterval(() => {
 		}
 		game = true		
 	}
-},2000 
+},500 
 );

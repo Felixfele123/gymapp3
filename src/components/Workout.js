@@ -61,6 +61,9 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
     if(spel.title == "TRE I RAD"){
       history.push("/newWorkout")  
     }
+    if(spel.title == "BREAKOUT"){
+      history.push("/Breakout")  
+    }
   };
   const handleChange = (workout) => {
     console.log("handle change")
@@ -106,6 +109,7 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
                 {title: "STRESS", elevation: 2},
                 {title: "PLUMP", elevation: 2},
                 {title: "ALFAPET", elevation: 2},
+                {title: "BREAKOUT", elevation: 10},
                   ].map((spel,index) => (
                 <Item key={index} id={"game" + index} elevation={spel.elevation}  onClick={() => handleClick(spel)}>
                    <a>{spel.title}</a>
