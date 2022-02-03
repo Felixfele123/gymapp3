@@ -61,7 +61,7 @@ const handleClick = (w) => {
     return(
     <Container style={{padding: "0", marginTop: "56px"}}>
           <section id="game">
-            <canvas id="breakoutCanvas" width="800" height="600"></canvas>
+            <canvas id="breakoutCanvas" width="320" height="240"></canvas>
           </section>
 
         </Container>

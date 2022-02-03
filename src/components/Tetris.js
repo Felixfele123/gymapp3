@@ -300,10 +300,10 @@ const handleClick = (w) => {
         <div></div>
         <div></div>
     <button id="start-button">Pause</button>
-    <ArrowUpwardIcon id="tetris-up" style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
-    <ArrowBackIcon id="tetris-back" style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
-    <ArrowForwardIcon id="tetris-forward"  style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
-    <ArrowDownwardIcon id="tetris-down" style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
+    <ArrowUpwardIcon id="tetris-up" style={{height: "70px",  width:"100%", inline:false, color:"white"}} fontSize="smal" inline="false"/>
+    <ArrowBackIcon id="tetris-back" style={{height: "70px",  width:"100%", inline:false, color:"white"}} fontSize="smal" inline="false"/>
+    <ArrowForwardIcon id="tetris-forward"  style={{height: "70px",  width:"100%", inline:false, color:"white"}} fontSize="smal" inline="false"/>
+    <ArrowDownwardIcon id="tetris-down" style={{height: "70px",  width:"100%", inline:false, color:"white"}} fontSize="smal" inline="false"/>
     </div>
 
 

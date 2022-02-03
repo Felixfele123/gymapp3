@@ -1,34 +1,43 @@
-var ballX = 75;
-var ballY = 75;
-var ballSpeedX = 5;
-var ballSpeedY = 7;
+var ballX = 75/2.5;
+var ballY = 75/2.5;
+var ballSpeedX = 5/2.5;
+var ballSpeedY = 7/2.5;
 
-const BRICK_W = 80;
-const BRICK_H = 20;
-const BRICK_GAP = 2;
+const BRICK_W = 80/2.5;
+const BRICK_H = 20/2.5;
+const BRICK_GAP = 2/2.5;
 const BRICK_COLS = 10;
 const BRICK_ROWS = 14;
 var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 var bricksLeft = 0;
 
-const PADDLE_WIDTH = 100;
-const PADDLE_THICKNESS = 10;
-const PADDLE_DIST_FROM_EDGE = 60;
-var paddleX = 400;
+const PADDLE_WIDTH = 100/2.5;
+const PADDLE_THICKNESS = 10/2.5;
+const PADDLE_DIST_FROM_EDGE = 60/2.5;
+var paddleX = 400/2.5;
 
 var canvas, canvasContext;
 
 var mouseX = 0;
 var mouseY = 0;
 
-function updateMousePos(evt) {
+function updateMousePos(e) {
 	var rect = canvas.getBoundingClientRect();
 	var root = document.documentElement;
+	if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+		console.log(e)
+        var touch = e.touches[0] || e.changedTouches[0];
+        mouseX = touch.pageX - rect.left - root.scrollLeft;
+        mouseY = touch.pageY - rect.top - root.scrollTop;
+    } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
+		mouseX = e.clientX - rect.left - root.scrollLeft;
+		mouseY = e.clientY - rect.top - root.scrollTop;
+    }
 
-	mouseX = evt.clientX - rect.left - root.scrollLeft;
-	mouseY = evt.clientY - rect.top - root.scrollTop;
 
-	paddleX = mouseX - PADDLE_WIDTH/2;
+
+
+	paddleX = mouseX - PADDLE_WIDTH/2.5;
 
 	// cheat / hack to test ball in any position
 	/*ballX = mouseX;
@@ -64,14 +73,15 @@ setInterval(()=>{
             setInterval(updateAll, 1000/framesPerSecond);
         
             canvas.addEventListener('mousemove', updateMousePos);
+			canvas.addEventListener('touchmove', updateMousePos);
         
             brickReset();
             ballReset();   
-        },1000)
+        },500)
         breakout = true
     }
 	console.log(breakout)
-},2000)
+},500)
 
 
 
@@ -81,8 +91,8 @@ function updateAll() {
 }
 
 function ballReset() {
-	ballX = canvas.width/2;
-	ballY = canvas.height/2;
+	ballX = canvas.width/2.5;
+	ballY = canvas.height/2.5;
 }
 
 function ballMove() {
@@ -168,7 +178,7 @@ function ballPaddleHandling() {
 		
 		ballSpeedY *= -1;
 
-		var centerOfPaddleX = paddleX+PADDLE_WIDTH/2;
+		var centerOfPaddleX = paddleX+PADDLE_WIDTH/2.5;
 		var ballDistFromPaddleCenterX = ballX - centerOfPaddleX;
 		ballSpeedX = ballDistFromPaddleCenterX * 0.35;
 
@@ -209,7 +219,7 @@ function drawBricks() {
 function drawAll() {
 	colorRect(0,0, canvas.width,canvas.height, 'black'); // clear screen
 
-	colorCircle(ballX,ballY, 10, 'white'); // draw ball
+	colorCircle(ballX,ballY, 10/2.5, 'white'); // draw ball
 
 	colorRect(paddleX, canvas.height-PADDLE_DIST_FROM_EDGE,
 				PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
@@ -225,7 +235,7 @@ function colorRect(topLeftX,topLeftY, boxWidth,boxHeight, fillColor) {
 function colorCircle(centerX,centerY, radius, fillColor) {
 	canvasContext.fillStyle = fillColor;
 	canvasContext.beginPath();
-	canvasContext.arc(centerX,centerY, 10, 0,Math.PI*2, true);
+	canvasContext.arc(centerX,centerY, 10/2.5, 0,Math.PI*2, true);
 	canvasContext.fill();
 }
 
