@@ -6,6 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button';
 import '../tetris.css';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles((theme) => ({
     success: {
@@ -61,7 +65,7 @@ const handleClick = (w) => {
     return(
     <Container style={{padding: "0", marginTop: "56px"}}>
           <section id="game">
-          <h3>Score:<span id="score">0</span></h3>
+          <h3 style={{color:"white", textAlign:"right", padding: "5px"}}>Score:<span id="score">0</span></h3>
 
     <div className="tcontainer" id="tetris">
       <div className="tgrid">
@@ -295,9 +299,12 @@ const handleClick = (w) => {
         <div></div>
         <div></div>
         <div></div>
-    <button id="start-button">Start/Pause</button>
-
-      </div>
+    <button id="start-button">Pause</button>
+    <ArrowUpwardIcon id="tetris-up" style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
+    <ArrowBackIcon id="tetris-back" style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
+    <ArrowForwardIcon id="tetris-forward"  style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
+    <ArrowDownwardIcon id="tetris-down" style={{height: "70px",  width:"100%", inline:false}} fontSize="smal" inline="false"/>
+    </div>
 
 
 

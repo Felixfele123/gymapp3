@@ -100,6 +100,18 @@ setInterval(()=>{
               }
             }
             document.addEventListener('keyup', control)
+            document.getElementById("tetris-up").addEventListener("click", () => {
+              rotate()
+            })
+            document.getElementById("tetris-back").addEventListener("click", () => {
+              moveLeft()
+            })
+            document.getElementById("tetris-forward").addEventListener("click", () => {
+              moveRight()
+            })
+            document.getElementById("tetris-down").addEventListener("click", () => {
+              moveDown()
+            })
           
             //move down function
             function moveDown() {
