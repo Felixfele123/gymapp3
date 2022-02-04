@@ -2,11 +2,13 @@
 var minesweeper = false
 setInterval(()=>{
   
-    var n = document.getElementsByClassName("mcontainer");
+    var n = document.getElementById("mcontainer");
     console.log(n)
     if(n === null){
         minesweeper = false
     }
+    console.log("minesweeper:"+n)
+    console.log("minesweeper:"+minesweeper)
     if(n != null && minesweeper !== true){
         setTimeout(() => {
             const grid = document.querySelector('.grid')
@@ -203,3 +205,7 @@ setInterval(()=>{
         minesweeper = true
     }
 },500)
+
+
+
+

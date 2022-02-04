@@ -61,7 +61,7 @@ const handleClick = (w) => {
     return(
     <Container style={{padding: "0", marginTop: "56px"}}>
         <section id="game">
-        <div className="mcontainer">
+        <div className="mcontainer" id="mcontainer">
             <div className="grid"></div>
             <div>Flags left: <span id='flags-left'></span></div>
             <div id="result"></div>
