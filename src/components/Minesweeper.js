@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button';
-import '../treirad.css';
+import '../minesweeper.css';
 
 const useStyles = makeStyles((theme) => ({
     success: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Breakout = ({workouts, setWorkouts, newWorkout, setNewWorkout, newWorkoutList, setNewWorkoutList}) => {
+const Workout = ({workouts, setWorkouts, newWorkout, setNewWorkout, newWorkoutList, setNewWorkoutList}) => {
 
 const classes = useStyles();
 const handleClick = (w) => {
@@ -60,12 +60,16 @@ const handleClick = (w) => {
 
     return(
     <Container style={{padding: "0", marginTop: "56px"}}>
-          <section id="game">
-            <canvas id="breakoutCanvas" width="320" height="240" style={{position:"relative"}}></canvas>
-          </section>
+        <section id="game">
+        <div className="mcontainer">
+            <div className="grid"></div>
+            <div>Flags left: <span id='flags-left'></span></div>
+            <div id="result"></div>
+        </div>
+        </section>
         </Container>
     )
 
 }
 
-export default Breakout;
+export default Workout;

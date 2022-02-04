@@ -66,6 +66,7 @@ setInterval(()=>{
 	console.log(breakout)
 	if(n != null && breakout !== true){
         setTimeout(()=> {
+			
             canvas = document.getElementById('breakoutCanvas');
             canvasContext = canvas.getContext('2d');
         
@@ -74,7 +75,8 @@ setInterval(()=>{
         
             canvas.addEventListener('mousemove', updateMousePos);
 			canvas.addEventListener('touchmove', updateMousePos);
-        
+
+
             brickReset();
             ballReset();   
         },500)

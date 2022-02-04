@@ -4,6 +4,7 @@ import Home from './components/Home'
 import NewWorkout from './components/NewWorkout'
 import Breakout from './components/Breakout'
 import Tetris from './components/Tetris'
+import Minesweeper from './components/Minesweeper'
 import axios from 'axios'
 import TopBar from "./components/TopBar"
 import BottomBar from "./components/BottomBar"
@@ -78,6 +79,9 @@ const fetchWorkouts = async () => {
             }/>
             <Route path="/Tetris" exact component={() => 
               <Tetris style={{marginTop: "70px"}} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout} newWorkoutList={newWorkoutList} setNewWorkoutList={setNewWorkoutList}/>
+            }/>
+            <Route path="/Minesweeper" exact component={() => 
+              <Minesweeper style={{marginTop: "70px"}} workouts={workouts} setWorkouts={setWorkouts} newWorkout={newWorkout} setNewWorkout={setNewWorkout} newWorkoutList={newWorkoutList} setNewWorkoutList={setNewWorkoutList}/>
             }/>
           </Switch>
       </div>
