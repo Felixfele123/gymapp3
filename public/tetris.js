@@ -64,7 +64,6 @@ setInterval(()=>{
             let currentPosition = 4
             let currentRotation = 0
           
-            console.log(theTetrominoes[0][0])
           
             //randomly select a Tetromino and its first rotation
             let random = Math.floor(Math.random()*theTetrominoes.length)
@@ -112,7 +111,39 @@ setInterval(()=>{
             document.getElementById("tetris-down").addEventListener("click", () => {
               moveDown()
             })
-          
+
+            //TOUCH
+            let touchstartX = 0
+            let touchendX = 0
+            
+            const slider = document.getElementById('tgrid')
+            
+            function handleGesture() {
+              if (touchendX < touchstartX + 150){
+                moveLeft()
+              }
+              if (touchendX > touchstartX - 150){
+                moveRight()
+              }
+              if (touchendY < touchstartY - 150){
+                rotate()
+              }
+              if (touchendY > touchstartY + 150){
+                moveDown()
+              }
+            }
+            
+            slider.addEventListener('touchstart', e => {
+              touchstartX = e.changedTouches[0].screenX
+              touchstartY = e.changedTouches[0].screenY
+            })
+            
+            slider.addEventListener('touchend', e => {
+              touchendX = e.changedTouches[0].screenX
+              touchendY = e.changedTouches[0].screenY
+              handleGesture()
+            })
+
             //move down function
             function moveDown() {
               undraw()

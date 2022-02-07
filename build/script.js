@@ -1,6 +1,5 @@
 // 5 parts 
 var n = document.getElementById("game1");
-console.log(n)
 //anonymous function 
 var game = false
 setInterval(() => {
@@ -8,9 +7,7 @@ setInterval(() => {
 	if(n === null){
 		game = false
 	}
-	console.log(game)
 	if(n != null && game !== true){
-		console.log("loading!!!!!")
 		//1. Initial states 
 
 		var num;
@@ -38,7 +35,6 @@ setInterval(() => {
 				ctx = box.getContext("2d");
 				ctx.clearRect(0, 0, box.width, box.height);
 			});
-
 		}
 	
 		

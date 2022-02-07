@@ -25,7 +25,6 @@ function updateMousePos(e) {
 	var rect = canvas.getBoundingClientRect();
 	var root = document.documentElement;
 	if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
-		console.log(e)
         var touch = e.touches[0] || e.changedTouches[0];
         mouseX = touch.pageX - rect.left - root.scrollLeft;
         mouseY = touch.pageY - rect.top - root.scrollTop;
@@ -63,7 +62,6 @@ setInterval(()=>{
 	if(n === null){
 		breakout = false
 	}
-	console.log(breakout)
 	if(n != null && breakout !== true){
         setTimeout(()=> {
 			
@@ -82,7 +80,6 @@ setInterval(()=>{
         },500)
         breakout = true
     }
-	console.log(breakout)
 },500)
 
 

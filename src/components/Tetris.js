@@ -68,7 +68,7 @@ const handleClick = (w) => {
           <h3 style={{color:"white", textAlign:"right", padding: "5px"}}>Score:<span id="score">0</span></h3>
 
     <div className="tcontainer" id="tetris">
-      <div className="tgrid">
+      <div className="tgrid" id="tgrid">
         <div></div>
         <div></div>
         <div></div>

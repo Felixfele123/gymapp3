@@ -3,12 +3,9 @@ var minesweeper = false
 setInterval(()=>{
   
     var n = document.getElementById("mcontainer");
-    console.log(n)
     if(n === null){
         minesweeper = false
     }
-    console.log("minesweeper:"+n)
-    console.log("minesweeper:"+minesweeper)
     if(n != null && minesweeper !== true){
         setTimeout(() => {
             const grid = document.querySelector('.grid')
@@ -40,6 +37,17 @@ setInterval(()=>{
                 //normal click
                 square.addEventListener('click', function(e) {
                   click(square)
+                  
+
+                  if(document.getElementsByClassName('checked').length === 80){
+                  result.innerHTML = 'YOU WIN!'
+                  isGameOver = true
+                  }
+
+                })
+                square.addEventListener('dblclick', function(e) {
+                  addFlag(square)
+                    console.log("dbclick")
                 })
           
                 //cntrl and left click
@@ -199,7 +207,9 @@ setInterval(()=>{
                   isGameOver = true
                 }
               }
+
             }
+            document.getElementsByClassName('checked')
 
         },500)
         minesweeper = true
