@@ -2,7 +2,9 @@
     display: inline-flex;
   }
   
-  
+  body{
+    overflow: hidden;
+  }
   .tgrid {
     width: 200px;
     height: 400px;
