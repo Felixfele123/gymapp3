@@ -63,6 +63,7 @@ const handleClick = (w) => {
   };
 
     return(
+    <Container style={{padding: "0", marginTop: "56px"}}>
           <section id="game">
           <h3 style={{color:"white", textAlign:"right", padding: "5px"}}>Score:<span id="score">0</span></h3>
 
@@ -311,6 +312,7 @@ const handleClick = (w) => {
 
           </section>
 
+        </Container>
     )
 
 }
