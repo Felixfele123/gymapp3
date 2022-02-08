@@ -1,13 +1,6 @@
 .mcontainer {
   width: 500px;
   align-content: center;
-  font-family:Verdana,sans-serif;
-  margin:auto;
-  height:90vh;
-  width:100%;
-  position:relative;
-  min-height:490px;
-  text-align: center;
 }
 #game {
   width: 100%;
@@ -20,8 +13,8 @@
   width: 400px;
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
   background-color: #dcd6bc;
+  margin-left: 50px;
   margin-top: 20px;
   border: 10px solid #dcd6bc;
   margin-bottom: 10px;

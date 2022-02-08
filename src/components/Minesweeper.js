@@ -64,6 +64,11 @@ const handleClick = (w) => {
         <div className="mcontainer" id="mcontainer">
             <div className="grid"></div>
             <div>Flags left: <span id='flags-left'></span></div>
+            <div>
+                <input type="checkbox" id="flag" name="scales"
+                        ></input>
+                <label for="scales">🚩</label>
+            </div>
             <div id="result"></div>
         </div>
         </section>

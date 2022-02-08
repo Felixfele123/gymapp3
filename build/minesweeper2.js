@@ -36,20 +36,19 @@ setInterval(()=>{
           
                 //normal click
                 square.addEventListener('click', function(e) {
-                  click(square)
-                  
-
-                  if(document.getElementsByClassName('checked').length === 80){
-                  result.innerHTML = 'YOU WIN!'
-                  isGameOver = true
+                  if(document.getElementById('flag').checked){
+                    addFlag(square)
+                  }else{
+                    click(square)
                   }
-
+                  if(document.getElementsByClassName('checked').length === 80){
+                    result.innerHTML = 'YOU WIN!'
+                    isGameOver = true
+                  }
                 })
-                square.addEventListener('dblclick', function(e) {
-                  addFlag(square)
-                    console.log("dbclick")
+                document.getElementById('flag').addEventListener('click', function(e){
+                    document.getElementById('flag').checked = !document.getElementById('flag').checked
                 })
-          
                 //cntrl and left click
                 square.oncontextmenu = function(e) {
                   e.preventDefault()
