@@ -61,16 +61,16 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
     if(spel.title == "TRE I RAD"){
       history.push("/newWorkout")  
     }
-    if(spel.title == "BREAKOUT"){
+    if(spel.title == "PINNBOLL"){
       history.push("/Breakout")  
     }
     if(spel.title == "TETRIS"){
       history.push("/Tetris")  
     }
-    if(spel.title == "MINESWEEPER"){
+    if(spel.title == "RÖJ"){
       history.push("/Minesweeper")  
     }
-    if(spel.title == "SOLITAIRE"){
+    if(spel.title == "PATIENS"){
       history.push("/Solitaire")  
     }
   };
@@ -105,15 +105,16 @@ const Workout = ({workoutIndex, value, setValue, workout, workouts, setWorkouts,
               }}
             >
               {[
-                {title: "TRE I RAD", elevation: 8},
-                {title: "BREAKOUT", elevation: 8},
+                {title: "TRE I RAD", elevation: 0},
+                {title: "PINNBOLL", elevation: 0},
                 {title: "TETRIS", elevation: 8},
-                {title: "MINESWEEPER", elevation: 8},
-                {title: "SOLITAIRE", elevation: 8},
+                {title: "RÖJ" ,elevation: 8},
+                {title: "PATIENS", elevation: 8},
                 
                   ].map((spel,index) => (
-                <Item key={index} id={"game" + index} elevation={spel.elevation}  onClick={() => handleClick(spel)}>
-                   <a>{spel.title}</a>
+                <Item color ="black" key={index} id={"game" + index} elevation={spel.elevation}  onClick={() => handleClick(spel)}>
+                   <h2>{spel.title}</h2>
+                   <h2>{spel.title2}</h2>
                 </Item>
               ))}
             </Box>

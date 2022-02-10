@@ -27,3 +27,8 @@ p{
   margin: 0!important;
   word-spacing: 2px!important
 }
+
+.mui-paper {
+  background-color: #000000!important;
+  color: #000000!important;
+}

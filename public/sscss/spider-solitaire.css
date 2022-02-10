@@ -43,3 +43,31 @@
 .ssscores tr.highlight {color:red;}
 
 .ssSaveRestore textarea {width:100%;height:300px;resize:none;font-size:xx-small;}
+
+#game4 {
+    background-image: url(../ssimages/card_back.gif);
+    font-style:initial;
+  }
+#game3 {
+    background-image: url(../ssimages/card_back\ -\ kopia.gif) ;
+    font-style: italic;
+  }
+#game2 {
+    background-image: url(../ssimages/card_back\ -\ kopia\ \(2\).gif) ;
+    font-style: italic;
+  }
+#game1 {
+    background-image: url(../ssimages/card_back\ -\ kopia\ \(3\).gif) ;
+    font-style: italic;
+  }
+#game0 {
+    background-image: url(../ssimages/card_back\ -\ kopia\ \(4\).gif) ;
+    font-style: italic;
+  }
+  h2{
+          -webkit-text-stroke: 2px black; /* width and color */
+
+  }
+
+
+  
